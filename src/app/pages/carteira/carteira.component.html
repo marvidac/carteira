@@ -1,0 +1,60 @@
+<p-card header="Carteira">
+    <span *ngIf="modoEdicao">
+
+        <div class="p-grid p-formgrid p-fluid">
+            <div class="p-col">
+                <div class="p-row">
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" pInputText />
+                </div>
+                <h1> </h1>
+                <div class="p-row">
+                    <label for="cdi">CDI </label>
+                    <p-inputSwitch [(ngModel)]="checked"></p-inputSwitch>
+                </div>
+
+            </div>
+        </div>
+
+        <p-footer>
+            <div class="p-grid p-formgrid p-fluid">
+                <div class="p-col-2">
+                    <button pButton type="button" label="Salvar"></button>
+                </div>
+                <div class="p-col-2">
+                    <button pButton type="button" class="p-button-secondary" label="Cancelar"></button>
+                </div>
+            </div>
+        </p-footer>
+    </span>
+
+    <p-table [value]="carteiras" [paginator]="true" [rows]="10" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>CDI?</th>
+                <th style="width:180px"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-carteira>
+            <tr>
+                <td>{{carteira.id}}</td>
+                <td>{{carteira.name}}</td>
+                <td>{{carteira.cdi}}</td>
+                <td>
+                    <div class="p-grid p-formgrid p-fluid">
+                        <div class="p-col-3">
+                            <button type="button" pButton pRipple icon="pi pi-search"
+                                (click)="selecionaParaEditar(carteira)"></button>
+                        </div>
+                        <div class="p-col-2">
+                            <button type="button" pButton pRipple icon="pi pi-search"
+                                (click)="selecionaParaDeletar(carteira)"></button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
